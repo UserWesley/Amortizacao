@@ -1,5 +1,5 @@
-/*
-Autor : Wesley Almeida da Silva
+
+/* Autor : Wesley Almeida da Silva
 Data Inicio : 13/10/2017
 Data Fim : 21/10/2017
 Linguagem de Programação : C
@@ -156,6 +156,8 @@ void calcularSistemaSAC(double divida, double taxaJuros, int periodo){
 	double tabelaDivida = divida;
 	double juros = 0;
 	double prestacao = 0;
+	double valorPago = 0;
+	double jurosPago = 0;
 
 	printf("\n\n\n-----------------------------------------------------------\n\n");
 	printf("\t Tabela SAC\n");
@@ -184,17 +186,23 @@ void calcularSistemaSAC(double divida, double taxaJuros, int periodo){
 			//Coluna - Juros
 			else if(coluna == 3) {
 				juros = taxaJuros * (tabelaDivida+amortizacao);
+				jurosPago = jurosPago + juros;
 				printf("| %2.f |", juros);
 			}
 
 			//Coluna - Prestação
 			else if(coluna == 4) {
 				prestacao = amortizacao + juros;
+				valorPago = valorPago + prestacao;
 				printf("| %2.f |", prestacao);
 				printf("\n");
 			}
 		}
 	}
+	
+	printf("\nValores Finais");
+	printf("\n\nValor pago no final %.12lf", valorPago);
+	printf("\nJuros pago no final %.12lf", jurosPago);
 
 	printf("\n\n-------------------------Fim tabela----------------------------------");
 
@@ -211,6 +219,8 @@ void calcularSistemaPRICE(double divida, double taxaJuros, int periodo){
 	double juros = 0;
 	double tabelaDivida = divida;
 	double amortizacao = 0;
+	double valorPago = 0;
+	double jurosPago = 0;
 
 	printf("\n\n\n-----------------------------------------------------------\n\n");
 	printf("\t Tabela PRICE\n");
@@ -228,28 +238,36 @@ void calcularSistemaPRICE(double divida, double taxaJuros, int periodo){
 			if(coluna == 0){printf(" %d - ", linha);}
 
 			//coluna da prestação
-			else if(coluna == 1){ printf("| %.16lf |",prestacao);}
+			else if(coluna == 1){ 
+				valorPago = valorPago + prestacao;
+				printf("| %.12lf |",prestacao);
+			}
 
 			//coluna do juros
 			else if(coluna == 2){
 				juros = taxaJuros * tabelaDivida;
-				printf("| %.16lf |", juros);
+				jurosPago = jurosPago + juros;
+				printf("| %.12lf |", juros);
 			}
 
 			//coluna Amortização
 			else if(coluna == 3){
 				amortizacao = prestacao - juros;
-				printf("| %.16lf |",amortizacao);
+				printf("| %.12lf |",amortizacao);
 			}
 
 			//coluna Divida
 			else if(coluna == 4){
 				tabelaDivida = tabelaDivida - amortizacao;
-				printf("| %.16lf |", tabelaDivida);
+				printf("| %.12lf |", tabelaDivida);
 				printf("\n");
 			}
 		}
 	}
+
+	printf("\nValores Finais");
+	printf("\n\nValor pago no final %.12lf", valorPago);
+	printf("\nJuros pago no final %.12lf", jurosPago);
 
 	printf("\n\n-------------------------Fim tabela----------------------------------");
 
@@ -265,6 +283,8 @@ void calcularSistemaAmericano(double divida, double taxaJuros, int periodo){
 	int amortizacao = 0;
 	double prestacao = divida * taxaJuros;
 	double juros = prestacao;
+	double valorPago = 0;
+	double jurosPago = 0;
 
 	printf("\n\n\n-----------------------------------------------------------\n\n");
 	printf("\tTabela Americana \n");
@@ -288,15 +308,23 @@ void calcularSistemaAmericano(double divida, double taxaJuros, int periodo){
 			else if(coluna == 2) { printf("| %2.f |", divida);}
 
 			//coluna prestacao
-			else if(coluna == 3) { printf("| %2.f |", prestacao);}
+			else if(coluna == 3) {
+				valorPago = valorPago + prestacao; 
+				printf("| %2.f |", prestacao);
+			}
 
 			//coluna juros
 			else if(coluna == 4) {
+				jurosPago = jurosPago + juros;
 				printf("| %2.f |", juros);
 				printf("\n");
 			}
 		}
 	}
+
+	printf("\nValores Finais");
+	printf("\n\nValor pago no final %.12lf", valorPago);
+	printf("\nJuros pago no final %.12lf", jurosPago);
 
 	printf("\n\n-------------------------Fim tabela----------------------------------");
 
@@ -316,6 +344,8 @@ void calcularSistemaSACRE(double divida, double taxaJuros, int periodo){
 	double juros = 0;
 	double prestacao = 0;
 	double tabelaDivida = divida;
+	double valorPago = 0;
+	double jurosPago = 0;
 
 	printf("\n-------------------------Iniciando tabela SACRE----------------------------------\n\n");
 	printf("\tTabela SACRE");
@@ -324,7 +354,7 @@ void calcularSistemaSACRE(double divida, double taxaJuros, int periodo){
 	scanf("%d", &ciclo);
 
 	printf("índice da tabela SACRE \n");
-	printf("Período | Amortização | Juros | Prestação | Dívida ");
+	printf("Período | Juros | Amortização | Prestação | Dívida ");
 
 	printf("\n\n------------------------ Tabela SACRE -----------------------\n");
 	//Construção da tabela SACRE
@@ -344,34 +374,37 @@ void calcularSistemaSACRE(double divida, double taxaJuros, int periodo){
 			//coluna juros
 			else if(coluna == 1){
 				juros = taxaJuros * tabelaDivida;
-				printf("| %.16lf |", juros);
+				jurosPago = jurosPago + juros;
+				printf("| %.12lf |", juros);
 			}
 
 			//coluna amortização
 			else if((coluna == 2) && (contaCiclo == 0)){
 				amortizacao = tabelaDivida / periodoRestante;
-				printf("| %.16lf |", amortizacao);
+				printf("| %.12lf |", amortizacao);
 			}
 
 			else if((coluna == 2) && (contaCiclo != 0)){
-				amortizacao = prestacao - juros; 
-				printf("| %.16lf |", amortizacao);
+				amortizacao = prestacao - juros;
+				printf("| %.12lf |", amortizacao);
 			}
 
 			//coluna prestação
 			else if((coluna == 3) && (contaCiclo == 0)){
 				prestacao = amortizacao + juros;
-				printf("| %.16lf |", prestacao);
+				valorPago = valorPago + prestacao;
+				printf("| %.12lf |", prestacao);
 
 			}
-			else if((coluna == 3) && (contaCiclo !=0)){
-				printf("| %.16lf |", prestacao);
+			else if((coluna == 3) && (contaCiclo != 0)){
+				printf("| %.12lf |", prestacao);
+				valorPago = valorPago + prestacao;
 			}
 
 			//coluna divida
 			else if(coluna == 4){
 				tabelaDivida = tabelaDivida - amortizacao;
-				printf("| %.16lf |", tabelaDivida);
+				printf("| %.12lf |", tabelaDivida);
 				printf("\n");
 			}
 
@@ -379,6 +412,10 @@ void calcularSistemaSACRE(double divida, double taxaJuros, int periodo){
 		periodoRestante--;
 		contaCiclo++;
 	}
+
+	printf("\nValores Finais");
+	printf("\n\nValor pago no final %.12lf", valorPago-juros);
+	printf("\nJuros pago no final %.12lf", jurosPago);
 
 	printf("\n\n-------------------------Fim tabela----------------------------------");
 
@@ -388,7 +425,8 @@ void calcularSistemaSACRE(double divida, double taxaJuros, int periodo){
 void verificaValores(double divida, double taxaJuros, int periodo){
 
 	printf("\n\n ----------------- Verificação de Valores ---------------------------");
-	printf("\n\nCapital Inicial : %.16lf", divida);
-	printf("\nTaxa de Juros : %.16lf", taxaJuros);
+	printf("\n\nCapital Inicial : %.12lf", divida);
+	printf("\nTaxa de Juros : %.12lf", taxaJuros);
 	printf("\nPeriodo : %d", periodo);
 }
+
