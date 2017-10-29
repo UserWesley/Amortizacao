@@ -158,7 +158,9 @@ void calcularSistemaSAC(double divida, double taxaJuros, int periodo){
 	double prestacao = 0;
 	double valorPago = 0;
 	double jurosPago = 0;
-
+	int linha = 0;
+	int coluuna = 0;
+	
 	printf("\n\n\n-----------------------------------------------------------\n\n");
 	printf("\t Tabela SAC\n");
 
@@ -169,8 +171,8 @@ void calcularSistemaSAC(double divida, double taxaJuros, int periodo){
 	//Construção da tabela PRICE
 	printf("\n\n----------------------- Tabela SAC ----------------------------\n");
 
-	for(int linha = 1; linha <= periodo; linha++){
-		for(int coluna = 0; coluna <=4;coluna++){
+	for( linha = 1; linha <= periodo; linha++){
+		for( coluna = 0; coluna <=4;coluna++){
 
 			//Coluna - Periodo
 			if(coluna == 0) {printf(" %d -",linha);}
@@ -221,7 +223,9 @@ void calcularSistemaPRICE(double divida, double taxaJuros, int periodo){
 	double amortizacao = 0;
 	double valorPago = 0;
 	double jurosPago = 0;
-
+	int linha = 0;
+	int coluuna = 0;
+	
 	printf("\n\n\n-----------------------------------------------------------\n\n");
 	printf("\t Tabela PRICE\n");
 
@@ -231,8 +235,8 @@ void calcularSistemaPRICE(double divida, double taxaJuros, int periodo){
 
 	//Construção da tabela PRICE
 	printf("\n-------------- Tabela PRICE ------------------\n\n");
-	for(int linha = 1; linha <=periodo ; linha++){
-		for(int coluna = 0; coluna <=4; coluna++){
+	for( linha = 1; linha <=periodo ; linha++){
+		for( coluna = 0; coluna <=4; coluna++){
 
 			//coluna do periodo
 			if(coluna == 0){printf(" %d - ", linha);}
@@ -285,7 +289,9 @@ void calcularSistemaAmericano(double divida, double taxaJuros, int periodo){
 	double juros = prestacao;
 	double valorPago = 0;
 	double jurosPago = 0;
-
+	int linha = 0;
+	int coluna = 0;
+	
 	printf("\n\n\n-----------------------------------------------------------\n\n");
 	printf("\tTabela Americana \n");
 
@@ -295,8 +301,8 @@ void calcularSistemaAmericano(double divida, double taxaJuros, int periodo){
 	//Construção da tabela americana
 	printf("\n\n------------- Tabela Americana ---------------\n");
 
-	for(int linha = 1; linha <=periodo ; linha++){
-		for(int coluna = 0; coluna <=4; coluna++){
+	for(linha = 1; linha <=periodo ; linha++){
+		for(coluna = 0; coluna <=4; coluna++){
 
 			//coluna periodo
 			if(coluna == 0 ){ printf(" %d -", linha);}
@@ -339,6 +345,8 @@ void calcularSistemaSACRE(double divida, double taxaJuros, int periodo){
 
 	int ciclo = 0;
 	int contaCiclo = 0;
+	int linha = 0;
+	int coluuna = 0;
 	int periodoRestante = periodo;
 	double amortizacao = 0;
 	double juros = 0;
@@ -358,7 +366,7 @@ void calcularSistemaSACRE(double divida, double taxaJuros, int periodo){
 
 	printf("\n\n------------------------ Tabela SACRE -----------------------\n");
 	//Construção da tabela SACRE
-	for(int linha = 1; linha <= periodo; linha++ ){
+	for( linha = 1; linha <= periodo; linha++ ){
 
 		//Controle de ciclo
 		if(contaCiclo == ciclo){
@@ -366,7 +374,7 @@ void calcularSistemaSACRE(double divida, double taxaJuros, int periodo){
 			printf("\n\tInicio de novo ciclo\n");
 		}
 
-		for(int coluna = 0 ; coluna <= 4; coluna++){
+		for( coluna = 0 ; coluna <= 4; coluna++){
 
 			//coluna periodo
 			if(coluna == 0){ printf("%d - ", linha);}
